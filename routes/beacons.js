@@ -1,7 +1,7 @@
 var express = require ('express');
 var router= express.Router();
 var mongojs= require('mongojs');
-var db= mongojs('mongodb://amira:amira@ds161950.mlab.com:61950/beacons', ['beacons']);
+var db= mongojs('mongodb://trinome:trinome@ds163020.mlab.com:63020/beacons', ['beacons']);
 
 //Get 
 router.get('/beacons', function(req, res, next){
@@ -29,7 +29,7 @@ router.get('/beacons/:id', function(req, res, next){
 router.post('/beacon', function(req, res, next){
     //res.setHeader('Content-Type', 'application/json');
     var beacon= req.body;
-    if (!beacon.uuid || !beacon.major || !beacon.minor ){
+    if (!beacon.uuid ){ //and id and date
         res.status(400);
         res.json({
             "error": "Bad Data"
